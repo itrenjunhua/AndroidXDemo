@@ -1,4 +1,4 @@
-package com.renj.androidx.fragment;
+package com.renj.androidx.base;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.databinding.ViewDataBinding;
 
 import com.renj.androidx.utils.Logger;
 
@@ -25,7 +25,7 @@ import com.renj.androidx.utils.Logger;
  * <p>
  * ======================================================================
  */
-public abstract class LazyFragment extends Fragment {
+public abstract class LazyFragment<DB extends ViewDataBinding, VM extends BaseViewModel> extends BaseFragment<DB, VM> {
     private static final int FRAGMENT_STATUS_UN_INIT = -1;
     private static final int FRAGMENT_STATUS_INIT_FINISH = 0;
     private static final int FRAGMENT_STATUS_FIRST_VISIBLE = 1;
@@ -38,23 +38,11 @@ public abstract class LazyFragment extends Fragment {
     // onHiddenChanged() 或者 setUserVisibleHint() 方法当前状态是否为对用户可见状态
     private boolean hiddenAndVisibleStatusVisible = true;
 
-    private View rootView;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(getLayoutId(), container, false);
         Logger.i(this + " onCreateView ============= ");
-
-        currentFragment = FRAGMENT_STATUS_UN_INIT;
-        initView(rootView);
-        initData();
-        currentFragment = FRAGMENT_STATUS_INIT_FINISH;
-        return rootView;
-    }
-
-    protected <T extends View> T findViewById(int viewId) {
-        return rootView.findViewById(viewId);
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
@@ -62,28 +50,6 @@ public abstract class LazyFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         Logger.i(this + " onActivityCreated ============= ");
     }
-
-    protected abstract int getLayoutId();
-
-    /**
-     * 初始化控件，<b>注意：该方法并非延迟执行方法。延迟方法：{@link #userFirstVisible()}</b><br/>
-     *
-     * @see #userFirstInVisible()
-     * @see #userVisible()
-     * @see #userFirstInVisible()
-     * @see #userInVisible()
-     */
-    protected abstract void initView(View rootView);
-
-    /**
-     * 初始化数据，<b>注意：该方法并非延迟执行方法。延迟方法：{@link #userFirstVisible()}</b><br/>
-     *
-     * @see #userFirstInVisible()
-     * @see #userVisible()
-     * @see #userFirstInVisible()
-     * @see #userInVisible()
-     */
-    protected abstract void initData();
 
     @Override
     public void onResume() {

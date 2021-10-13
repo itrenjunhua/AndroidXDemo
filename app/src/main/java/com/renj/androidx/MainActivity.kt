@@ -1,20 +1,22 @@
 package com.renj.androidx
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
+import com.renj.androidx.base.BaseActivity
 import com.renj.androidx.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var activityMainBinding: ActivityMainBinding
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        activityMainBinding =
-            DataBindingUtil.setContentView(this@MainActivity, R.layout.activity_main)
+    override fun getCurrentActivity(): BaseActivity<ActivityMainBinding, MainViewModel> {
+        return this@MainActivity
+    }
 
-        activityMainBinding.viewModel =
-            ViewModelProvider(this@MainActivity).get(MainViewModel::class.java)
+    override fun getLayoutId(): Int {
+        return R.layout.activity_main
+    }
+
+    override fun initData(viewDataBinding: ActivityMainBinding?, viewModel: MainViewModel?) {
+        viewDataBinding?.viewModel = viewModel
+    }
+
+    override fun initListener(viewDataBinding: ActivityMainBinding?, viewModel: MainViewModel?) {
     }
 }

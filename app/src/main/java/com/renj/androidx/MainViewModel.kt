@@ -3,8 +3,8 @@ package com.renj.androidx
 import android.app.Application
 import android.content.Intent
 import android.view.View
-import androidx.lifecycle.AndroidViewModel
-import com.renj.androidx.fragment.FragmentActivity
+import com.renj.androidx.base.BaseViewModel
+import com.renj.androidx.fm.FragmentActivity
 
 /**
  * ======================================================================
@@ -19,8 +19,10 @@ import com.renj.androidx.fragment.FragmentActivity
  *
  * ======================================================================
  */
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(application: Application, activity: MainActivity) :
+    BaseViewModel(application, activity) {
+
     fun clickViewPager(view: View) {
-        view.context.startActivity(Intent(view.context, FragmentActivity::class.java))
+        activity?.startActivity(Intent(activity, FragmentActivity::class.java))
     }
 }
