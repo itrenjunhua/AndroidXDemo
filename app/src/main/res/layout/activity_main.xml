@@ -37,7 +37,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_view" />
 
-        <TextView
+        <Button
             style="@style/style_main_bt"
             android:onClick="@{viewModel.clickViewPager}"
             android:text="Fragment/ViewPager/Viewpager2"

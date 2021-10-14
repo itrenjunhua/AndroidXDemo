@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".fm.FragmentActivity" />
+        <activity android:name=".fvp.FVPActivity" />
     </application>
 
 </manifest>

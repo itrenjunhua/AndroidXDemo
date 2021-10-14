@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Intent
 import android.view.View
 import com.renj.androidx.base.BaseViewModel
-import com.renj.androidx.fm.FragmentActivity
+import com.renj.androidx.fvp.FVPActivity
 
 /**
  * ======================================================================
@@ -23,6 +23,6 @@ class MainViewModel(application: Application, activity: MainActivity) :
     BaseViewModel(application, activity) {
 
     fun clickViewPager(view: View) {
-        activity?.startActivity(Intent(activity, FragmentActivity::class.java))
+        activity?.startActivity(Intent(activity, FVPActivity::class.java))
     }
 }

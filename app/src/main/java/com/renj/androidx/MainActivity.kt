@@ -16,7 +16,4 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override fun initData(viewDataBinding: ActivityMainBinding?, viewModel: MainViewModel?) {
         viewDataBinding?.viewModel = viewModel
     }
-
-    override fun initListener(viewDataBinding: ActivityMainBinding?, viewModel: MainViewModel?) {
-    }
 }

@@ -85,5 +85,6 @@ public abstract class BaseActivity<DB extends ViewDataBinding, VM extends BaseVi
 
     protected abstract void initData(DB viewDataBinding, VM viewModel);
 
-    protected abstract void initListener(DB viewDataBinding, VM viewModel);
+    protected void initListener(DB viewDataBinding, VM viewModel) {
+    }
 }

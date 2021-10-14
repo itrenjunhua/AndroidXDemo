@@ -12,6 +12,4 @@
     <color name="text_main">#FF333333</color>
     <color name="text_grey">#FF666666</color>
 
-    <color name="bt_normal">@color/blue_500</color>
-    <color name="bt_press">@color/blue_700</color>
 </resources>
