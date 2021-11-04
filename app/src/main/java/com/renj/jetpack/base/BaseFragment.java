@@ -1,4 +1,4 @@
-package com.renj.androidx.base;
+package com.renj.jetpack.base;
 
 import android.app.Application;
 import android.os.Bundle;
@@ -18,6 +18,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * ======================================================================
@@ -35,6 +37,14 @@ import java.lang.reflect.Type;
 public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseViewModel> extends Fragment {
     protected DB viewDataBinding;
     protected VM viewModel;
+
+    private Map<Class<? extends BaseLifecycleListener>, BaseLifecycleListener> lifecycleListeners;
+
+    public BaseFragment() {
+        super();
+        lifecycleListeners = new HashMap<>();
+        structureMethod();
+    }
 
     @Nullable
     @Override
@@ -76,6 +86,13 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
         return null;
     }
 
+    /**
+     * 构造方法中调用，在 onCreate() 方法之前执行
+     */
+    protected void structureMethod() {
+
+    }
+
     protected abstract BaseFragment<DB, VM> getCurrentFragment();
 
     @LayoutRes
@@ -90,6 +107,32 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
      * @see LazyFragment#userInVisible()
      */
     protected abstract void initData(DB viewDataBinding, VM viewModel);
+
+    // ====================== 生命周期监听 ====================== //
+
+    public <T extends BaseLifecycleListener> void addLifecycleListener(T lifecycleListener) {
+        if (lifecycleListener != null) {
+            lifecycleListeners.put(lifecycleListener.getClass(), lifecycleListener);
+            lifecycleListener.setLifecycle(getLifecycle());
+            getLifecycle().addObserver(lifecycleListener);
+        }
+    }
+
+    public <T extends BaseLifecycleListener> void removeLifecycleListener(T lifecycleListener) {
+        if (lifecycleListener != null) {
+            getLifecycle().removeObserver(lifecycleListener);
+            lifecycleListeners.remove(lifecycleListener.getClass());
+        }
+    }
+
+    public Map<Class<? extends BaseLifecycleListener>, BaseLifecycleListener> getLifecycleListeners() {
+        if (lifecycleListeners == null) return new HashMap<>();
+        return lifecycleListeners;
+    }
+
+    public <T extends BaseLifecycleListener> T getLifecycleListener(Class<T> clazz) {
+        return (T) lifecycleListeners.get(clazz);
+    }
 
     protected void initListener(DB viewDataBinding, VM viewModel) {
     }

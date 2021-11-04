@@ -1,4 +1,4 @@
-package com.renj.androidx.base;
+package com.renj.jetpack.base;
 
 /**
  * ======================================================================

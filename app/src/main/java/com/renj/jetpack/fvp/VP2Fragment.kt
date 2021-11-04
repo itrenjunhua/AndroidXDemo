@@ -1,16 +1,17 @@
-package com.renj.androidx.fvp
+package com.renj.jetpack.fvp
 
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
 import com.google.android.material.tabs.TabLayout
-import com.renj.androidx.R
-import com.renj.androidx.base.BaseFragment
-import com.renj.androidx.base.LazyFragment
-import com.renj.androidx.databinding.FragmentViewPager2Binding
+import com.renj.jetpack.R
+import com.renj.jetpack.base.BaseFragment
+import com.renj.jetpack.base.LazyFragment
+import com.renj.jetpack.databinding.FragmentViewPager2Binding
 
 /**
  * ======================================================================
@@ -63,6 +64,19 @@ class VP2Fragment : LazyFragment<FragmentViewPager2Binding, Nothing>() {
                 setTabTextColors(Color.BLACK, Color.BLUE)
                 setSelectedTabIndicatorColor(Color.BLUE)
                 setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_BOTTOM)
+
+                // 增加监听
+                addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                    override fun onTabSelected(tab: TabLayout.Tab?) {
+                        viewPager.currentItem = tab!!.position
+                    }
+
+                    override fun onTabUnselected(tab: TabLayout.Tab?) {
+                    }
+
+                    override fun onTabReselected(tab: TabLayout.Tab?) {
+                    }
+                })
             }
 
 
@@ -70,6 +84,13 @@ class VP2Fragment : LazyFragment<FragmentViewPager2Binding, Nothing>() {
                 orientation = ORIENTATION_HORIZONTAL // 设置滑动方向-水平
                 // orientation = ORIENTATION_VERTICAL // 设置滑动方向-垂直
                 activity?.let { adapter = ViewPager2FragmentAdapter(it, fragments) }
+
+                // 增加监听
+                registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                    override fun onPageSelected(position: Int) {
+                        tabLayout.getTabAt(position)?.select()
+                    }
+                })
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.renj.androidx.fvp
+package com.renj.jetpack.fvp
 
 import android.graphics.Color
 import android.os.Bundle
@@ -8,10 +8,10 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
-import com.renj.androidx.R
-import com.renj.androidx.base.BaseFragment
-import com.renj.androidx.base.LazyFragment
-import com.renj.androidx.databinding.FragmentViewPager2Binding
+import com.renj.jetpack.R
+import com.renj.jetpack.base.BaseFragment
+import com.renj.jetpack.base.LazyFragment
+import com.renj.jetpack.databinding.FragmentViewPager2Binding
 
 /**
  * ======================================================================

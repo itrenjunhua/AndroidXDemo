@@ -1,7 +1,7 @@
-package com.renj.androidx
+package com.renj.jetpack
 
-import com.renj.androidx.base.BaseActivity
-import com.renj.androidx.databinding.ActivityMainBinding
+import com.renj.jetpack.base.BaseActivity
+import com.renj.jetpack.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 

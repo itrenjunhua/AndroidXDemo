@@ -1,11 +1,11 @@
-package com.renj.androidx.fvp
+package com.renj.jetpack.fvp
 
-import android.graphics.Color
 import android.os.Bundle
-import com.renj.androidx.R
-import com.renj.androidx.base.BaseFragment
-import com.renj.androidx.base.LazyFragment
-import com.renj.androidx.databinding.FragmentActivityFragmentBinding
+import androidx.annotation.ColorInt
+import com.renj.jetpack.R
+import com.renj.jetpack.base.BaseFragment
+import com.renj.jetpack.base.LazyFragment
+import com.renj.jetpack.databinding.FragmentActivityFragmentBinding
 
 /**
  * ======================================================================
@@ -14,18 +14,20 @@ import com.renj.androidx.databinding.FragmentActivityFragmentBinding
  *
  * 创建时间：2021-10-14   9:21
  *
- * 描述：使用 replace 的Fragment
+ * 描述：各个功能下的子Fragment，共用
  *
  * 修订历史：
  *
  * ======================================================================
  */
-class FragmentReplace : LazyFragment<FragmentActivityFragmentBinding, Nothing>() {
+class FragmentChild : LazyFragment<FragmentActivityFragmentBinding, Nothing>() {
 
     companion object {
-        fun newInstance(): FragmentReplace {
+        fun newInstance(content: String, @ColorInt color: Int): FragmentChild {
             val args = Bundle()
-            val fragment = FragmentReplace()
+            args.putString("value", content)
+            args.putInt("color", color)
+            val fragment = FragmentChild()
             fragment.arguments = args
             return fragment
         }
@@ -44,8 +46,10 @@ class FragmentReplace : LazyFragment<FragmentActivityFragmentBinding, Nothing>()
         viewModel: Nothing?
     ) {
         viewDataBinding?.run {
-            flFragmentContent.setBackgroundColor(Color.parseColor("#88FF8989"))
-            value = "Fragment Replace"
+            arguments?.run {
+                flFragmentContent.setBackgroundColor(getInt("color"))
+                value = getString("value")
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-package com.renj.androidx.utils;
+package com.renj.jetpack.utils;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;

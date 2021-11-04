@@ -1,4 +1,4 @@
-package com.renj.androidx.weight;
+package com.renj.jetpack.weight;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -20,8 +20,8 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.renj.androidx.R;
-import com.renj.androidx.utils.UIUtils;
+import com.renj.jetpack.R;
+import com.renj.jetpack.utils.UIUtils;
 
 /**
  * ======================================================================

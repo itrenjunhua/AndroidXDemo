@@ -1,11 +1,11 @@
-package com.renj.androidx.fvp
+package com.renj.jetpack.fvp
 
 import android.graphics.Color
 import android.os.Bundle
-import com.renj.androidx.R
-import com.renj.androidx.base.BaseFragment
-import com.renj.androidx.base.LazyFragment
-import com.renj.androidx.databinding.FragmentActivityAddBinding
+import com.renj.jetpack.R
+import com.renj.jetpack.base.BaseFragment
+import com.renj.jetpack.base.LazyFragment
+import com.renj.jetpack.databinding.FragmentActivityAddBinding
 
 /**
  * ======================================================================

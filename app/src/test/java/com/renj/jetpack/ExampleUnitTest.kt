@@ -1,4 +1,4 @@
-package com.renj.androidx
+package com.renj.jetpack
 
 import org.junit.Test
 

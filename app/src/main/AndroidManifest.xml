@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.renj.androidx">
+    package="com.renj.jetpack">
 
     <application
-        android:name=".MyApplication"
+        android:name="com.renj.jetpack.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AndroidXDemo">
+        android:theme="@style/Theme.JetpackDemo">
         <activity
-            android:name=".MainActivity"
+            android:name="com.renj.jetpack.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".fvp.FVPActivity" />
+        <activity android:name="com.renj.jetpack.fvp.FVPActivity" />
     </application>
 
 </manifest>

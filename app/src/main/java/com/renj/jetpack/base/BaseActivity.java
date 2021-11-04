@@ -1,9 +1,10 @@
-package com.renj.androidx.base;
+package com.renj.jetpack.base;
 
 import android.app.Application;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,10 +15,12 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.renj.androidx.utils.SystemBarUtils;
+import com.renj.jetpack.utils.SystemBarUtils;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * ======================================================================
@@ -36,6 +39,14 @@ public abstract class BaseActivity<DB extends ViewDataBinding, VM extends BaseVi
     protected DB viewDataBinding;
     protected VM viewModel;
 
+    private Map<Class<? extends BaseLifecycleListener>, BaseLifecycleListener> lifecycleListeners;
+
+    public BaseActivity() {
+        super();
+        lifecycleListeners = new HashMap<>();
+        structureMethod();
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +56,13 @@ public abstract class BaseActivity<DB extends ViewDataBinding, VM extends BaseVi
         SystemBarUtils.setStatusWhiteAndDark(this);
         initData(viewDataBinding, viewModel);
         initListener(viewDataBinding, viewModel);
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                handlerOnBack();
+            }
+        });
     }
 
     @SuppressWarnings("all")
@@ -77,6 +95,13 @@ public abstract class BaseActivity<DB extends ViewDataBinding, VM extends BaseVi
         return null;
     }
 
+    /**
+     * 构造方法中调用，在 onCreate() 方法之前执行
+     */
+    protected void structureMethod() {
+
+    }
+
     protected abstract BaseActivity<DB, VM> getCurrentActivity();
 
     @LayoutRes
@@ -85,6 +110,36 @@ public abstract class BaseActivity<DB extends ViewDataBinding, VM extends BaseVi
 
     protected abstract void initData(DB viewDataBinding, VM viewModel);
 
+    // ====================== 生命周期监听 ====================== //
+
+    public <T extends BaseLifecycleListener> void addLifecycleListener(T lifecycleListener) {
+        if (lifecycleListener != null) {
+            lifecycleListeners.put(lifecycleListener.getClass(), lifecycleListener);
+            lifecycleListener.setLifecycle(getLifecycle());
+            getLifecycle().addObserver(lifecycleListener);
+        }
+    }
+
+    public <T extends BaseLifecycleListener> void removeLifecycleListener(T lifecycleListener) {
+        if (lifecycleListener != null) {
+            getLifecycle().removeObserver(lifecycleListener);
+            lifecycleListeners.remove(lifecycleListener.getClass());
+        }
+    }
+
+    public Map<Class<? extends BaseLifecycleListener>, BaseLifecycleListener> getLifecycleListeners() {
+        if (lifecycleListeners == null) return new HashMap<>();
+        return lifecycleListeners;
+    }
+
+    public <T extends BaseLifecycleListener> T getLifecycleListener(Class<T> clazz) {
+        return (T) lifecycleListeners.get(clazz);
+    }
+
     protected void initListener(DB viewDataBinding, VM viewModel) {
+    }
+
+    protected void handlerOnBack() {
+        finish();
     }
 }

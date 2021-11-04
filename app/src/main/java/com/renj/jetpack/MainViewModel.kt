@@ -1,10 +1,10 @@
-package com.renj.androidx
+package com.renj.jetpack
 
 import android.app.Application
 import android.content.Intent
 import android.view.View
-import com.renj.androidx.base.BaseViewModel
-import com.renj.androidx.fvp.FVPActivity
+import com.renj.jetpack.base.BaseViewModel
+import com.renj.jetpack.fvp.FVPActivity
 
 /**
  * ======================================================================

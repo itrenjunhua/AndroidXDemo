@@ -1,10 +1,10 @@
-package com.renj.androidx.fvp
+package com.renj.jetpack.fvp
 
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
-import com.renj.androidx.R
-import com.renj.androidx.base.BaseActivity
-import com.renj.androidx.databinding.FragmentActivityBinding
+import com.renj.jetpack.R
+import com.renj.jetpack.base.BaseActivity
+import com.renj.jetpack.databinding.FragmentActivityBinding
 
 /**
  * ======================================================================

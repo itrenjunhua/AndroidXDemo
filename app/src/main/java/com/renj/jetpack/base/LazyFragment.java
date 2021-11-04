@@ -1,4 +1,4 @@
-package com.renj.androidx.base;
+package com.renj.jetpack.base;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,8 +10,10 @@ import androidx.annotation.Nullable;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleRegistry;
 
-import com.renj.androidx.utils.Logger;
+import com.renj.jetpack.utils.Logger;
 
 import java.util.List;
 
@@ -42,6 +44,32 @@ public abstract class LazyFragment<DB extends ViewDataBinding, VM extends BaseVi
     // onHiddenChanged() 或者 setUserVisibleHint() 方法当前状态是否为对用户可见状态
     private boolean hiddenAndVisibleStatusVisible = true;
 
+    private LifecycleRegistry mLifecycleRegistry;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        changeLifecycleStatus(Lifecycle.Event.ON_CREATE);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        changeLifecycleStatus(Lifecycle.Event.ON_START);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        changeLifecycleStatus(Lifecycle.Event.ON_STOP);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        changeLifecycleStatus(Lifecycle.Event.ON_DESTROY);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,12 +94,14 @@ public abstract class LazyFragment<DB extends ViewDataBinding, VM extends BaseVi
         if (hiddenAndVisibleStatusVisible) {
             if (currentFragment == FRAGMENT_STATUS_INIT_FINISH) {
                 userFirstVisible();
+                changeLifecycleStatus(Lifecycle.Event.ON_RESUME);
                 notifyChildHiddenChange(FRAGMENT_STATUS_FIRST_VISIBLE);
                 currentFragment = FRAGMENT_STATUS_FIRST_VISIBLE;
             } else if (currentFragment == FRAGMENT_STATUS_FIRST_INVISIBLE
                     || currentFragment == FRAGMENT_STATUS_INVISIBLE
                     || currentFragment == FRAGMENT_STATUS_VISIBLE) {
                 userVisible();
+                changeLifecycleStatus(Lifecycle.Event.ON_RESUME);
                 notifyChildHiddenChange(FRAGMENT_STATUS_VISIBLE);
                 currentFragment = FRAGMENT_STATUS_VISIBLE;
             }
@@ -86,11 +116,13 @@ public abstract class LazyFragment<DB extends ViewDataBinding, VM extends BaseVi
         if (hiddenAndVisibleStatusVisible) {
             if (currentFragment == FRAGMENT_STATUS_FIRST_VISIBLE) {
                 userFirstInVisible();
+                changeLifecycleStatus(Lifecycle.Event.ON_PAUSE);
                 notifyChildHiddenChange(FRAGMENT_STATUS_FIRST_INVISIBLE);
                 currentFragment = FRAGMENT_STATUS_INVISIBLE;
             } else if (currentFragment == FRAGMENT_STATUS_VISIBLE
                     || currentFragment == FRAGMENT_STATUS_INVISIBLE) {
                 userInVisible();
+                changeLifecycleStatus(Lifecycle.Event.ON_PAUSE);
                 notifyChildHiddenChange(FRAGMENT_STATUS_INVISIBLE);
                 currentFragment = FRAGMENT_STATUS_INVISIBLE;
             }
@@ -105,21 +137,25 @@ public abstract class LazyFragment<DB extends ViewDataBinding, VM extends BaseVi
         if (!hidden) {
             if (currentFragment == FRAGMENT_STATUS_INIT_FINISH) {
                 userFirstVisible();
+                changeLifecycleStatus(Lifecycle.Event.ON_RESUME);
                 notifyChildHiddenChange(FRAGMENT_STATUS_FIRST_VISIBLE);
                 currentFragment = FRAGMENT_STATUS_FIRST_VISIBLE;
             } else if (currentFragment == FRAGMENT_STATUS_FIRST_INVISIBLE
                     || currentFragment == FRAGMENT_STATUS_INVISIBLE) {
                 userVisible();
+                changeLifecycleStatus(Lifecycle.Event.ON_RESUME);
                 notifyChildHiddenChange(FRAGMENT_STATUS_VISIBLE);
                 currentFragment = FRAGMENT_STATUS_VISIBLE;
             }
         } else {
             if (currentFragment == FRAGMENT_STATUS_FIRST_VISIBLE) {
                 userFirstInVisible();
+                changeLifecycleStatus(Lifecycle.Event.ON_PAUSE);
                 notifyChildHiddenChange(FRAGMENT_STATUS_FIRST_INVISIBLE);
                 currentFragment = FRAGMENT_STATUS_FIRST_INVISIBLE;
             } else if (currentFragment == FRAGMENT_STATUS_VISIBLE) {
                 userInVisible();
+                changeLifecycleStatus(Lifecycle.Event.ON_PAUSE);
                 notifyChildHiddenChange(FRAGMENT_STATUS_INVISIBLE);
                 currentFragment = FRAGMENT_STATUS_INVISIBLE;
             }
@@ -135,21 +171,25 @@ public abstract class LazyFragment<DB extends ViewDataBinding, VM extends BaseVi
         if (isVisibleToUser) {
             if (currentFragment == FRAGMENT_STATUS_INIT_FINISH) {
                 userFirstVisible();
+                changeLifecycleStatus(Lifecycle.Event.ON_RESUME);
                 notifyChildHiddenChange(FRAGMENT_STATUS_FIRST_VISIBLE);
                 currentFragment = FRAGMENT_STATUS_FIRST_VISIBLE;
             } else if (currentFragment == FRAGMENT_STATUS_FIRST_INVISIBLE
                     || currentFragment == FRAGMENT_STATUS_INVISIBLE) {
                 userVisible();
+                changeLifecycleStatus(Lifecycle.Event.ON_RESUME);
                 notifyChildHiddenChange(FRAGMENT_STATUS_VISIBLE);
                 currentFragment = FRAGMENT_STATUS_VISIBLE;
             }
         } else {
             if (currentFragment == FRAGMENT_STATUS_FIRST_VISIBLE) {
                 userFirstInVisible();
+                changeLifecycleStatus(Lifecycle.Event.ON_PAUSE);
                 notifyChildHiddenChange(FRAGMENT_STATUS_FIRST_INVISIBLE);
                 currentFragment = FRAGMENT_STATUS_FIRST_INVISIBLE;
             } else if (currentFragment == FRAGMENT_STATUS_VISIBLE) {
                 userInVisible();
+                changeLifecycleStatus(Lifecycle.Event.ON_PAUSE);
                 notifyChildHiddenChange(FRAGMENT_STATUS_INVISIBLE);
                 currentFragment = FRAGMENT_STATUS_INVISIBLE;
             }
@@ -184,6 +224,55 @@ public abstract class LazyFragment<DB extends ViewDataBinding, VM extends BaseVi
         Logger.i(this.getClass().getSimpleName() + " inVisible ============= 用户不可见");
     }
 
+    /**
+     * 生命周期改变监听
+     */
+    private void changeLifecycleStatus(Lifecycle.Event event) {
+        if (event.equals(Lifecycle.Event.ON_CREATE)) {
+            for (Class<? extends BaseLifecycleListener> aClass : getLifecycleListeners().keySet()) {
+                BaseLifecycleListener baseLifecycleListener = getLifecycleListeners().get(aClass);
+                if (baseLifecycleListener != null) {
+                    baseLifecycleListener.onCreate(this);
+                }
+            }
+        } else if (event.equals(Lifecycle.Event.ON_START)) {
+            for (Class<? extends BaseLifecycleListener> aClass : getLifecycleListeners().keySet()) {
+                BaseLifecycleListener baseLifecycleListener = getLifecycleListeners().get(aClass);
+                if (baseLifecycleListener != null) {
+                    baseLifecycleListener.onStart(this);
+                }
+            }
+        } else if (event.equals(Lifecycle.Event.ON_RESUME)) {
+            for (Class<? extends BaseLifecycleListener> aClass : getLifecycleListeners().keySet()) {
+                BaseLifecycleListener baseLifecycleListener = getLifecycleListeners().get(aClass);
+                if (baseLifecycleListener != null) {
+                    baseLifecycleListener.onResume(this);
+                }
+            }
+        } else if (event.equals(Lifecycle.Event.ON_PAUSE)) {
+            for (Class<? extends BaseLifecycleListener> aClass : getLifecycleListeners().keySet()) {
+                BaseLifecycleListener baseLifecycleListener = getLifecycleListeners().get(aClass);
+                if (baseLifecycleListener != null) {
+                    baseLifecycleListener.onPause(this);
+                }
+            }
+        } else if (event.equals(Lifecycle.Event.ON_STOP)) {
+            for (Class<? extends BaseLifecycleListener> aClass : getLifecycleListeners().keySet()) {
+                BaseLifecycleListener baseLifecycleListener = getLifecycleListeners().get(aClass);
+                if (baseLifecycleListener != null) {
+                    baseLifecycleListener.onStop(this);
+                }
+            }
+        } else if (event.equals(Lifecycle.Event.ON_DESTROY)) {
+            for (Class<? extends BaseLifecycleListener> aClass : getLifecycleListeners().keySet()) {
+                BaseLifecycleListener baseLifecycleListener = getLifecycleListeners().get(aClass);
+                if (baseLifecycleListener != null) {
+                    baseLifecycleListener.onDestroy(this);
+                }
+            }
+        }
+    }
+
 
     /**
      * 当自己的显示隐藏状态改变时，调用这个方法通知子Fragment
@@ -213,5 +302,13 @@ public abstract class LazyFragment<DB extends ViewDataBinding, VM extends BaseVi
                 }
             }
         }
+    }
+
+    @NonNull
+    @Override
+    public Lifecycle getLifecycle() {
+        if (mLifecycleRegistry == null)
+            mLifecycleRegistry = new LifecycleRegistry(this);
+        return mLifecycleRegistry;
     }
 }

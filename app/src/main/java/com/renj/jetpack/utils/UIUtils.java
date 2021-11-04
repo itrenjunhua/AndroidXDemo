@@ -1,4 +1,4 @@
-package com.renj.androidx.utils;
+package com.renj.jetpack.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 
-import com.renj.androidx.MyApplication;
+import com.renj.jetpack.MyApplication;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.renj.androidx.utils;
+package com.renj.jetpack.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.view.WindowManager;
 
 import androidx.annotation.ColorRes;
 
-import com.renj.androidx.R;
+import com.renj.jetpack.R;
 
 import java.io.File;
 import java.io.FileInputStream;

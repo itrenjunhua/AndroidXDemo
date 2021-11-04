@@ -1,4 +1,4 @@
-package com.renj.androidx.utils
+package com.renj.jetpack.utils
 
 import android.text.TextUtils
 import android.util.Log
