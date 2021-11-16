@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.renj.jetpack.MainViewModel" />
+            type="com.renj.jetpack.MainVM" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
@@ -38,12 +38,22 @@
             app:layout_constraintTop_toBottomOf="@+id/title_view" />
 
         <Button
+            android:id="@+id/bt_view_pager"
             style="@style/style_main_bt"
             android:onClick="@{viewModel.clickViewPager}"
             android:text="Fragment/ViewPager/Viewpager2"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_view" />
+
+        <Button
+            android:id="@+id/bt_nivagation"
+            style="@style/style_main_bt"
+            android:onClick="@{viewModel.clickNavigation}"
+            android:text="Navigation"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_view_pager" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

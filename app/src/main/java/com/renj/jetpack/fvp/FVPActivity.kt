@@ -1,5 +1,7 @@
 package com.renj.jetpack.fvp
 
+import android.content.Context
+import android.content.Intent
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.renj.jetpack.R
@@ -20,6 +22,12 @@ import com.renj.jetpack.databinding.FragmentActivityBinding
  * ======================================================================
  */
 class FVPActivity : BaseActivity<FragmentActivityBinding, Nothing>() {
+
+    object Commend {
+        fun start(context: Context) {
+            context.startActivity(Intent(context, FVPActivity::class.java))
+        }
+    }
 
     override fun getCurrentActivity(): BaseActivity<FragmentActivityBinding, Nothing> {
         return this

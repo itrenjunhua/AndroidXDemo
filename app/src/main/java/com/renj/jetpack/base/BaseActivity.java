@@ -1,21 +1,17 @@
 package com.renj.jetpack.base;
 
-import android.app.Application;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.renj.jetpack.utils.SystemBarUtils;
+import com.renj.jetpack.utils.VMProviderUtils;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -73,21 +69,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding, VM extends BaseVi
             try {
                 Class<VM> clazz = (Class<VM>) ((ParameterizedType) genericSuperclass).getActualTypeArguments()[1];
                 if (clazz == null) return null;
-                return new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory() {
-                    @NonNull
-                    @Override
-                    public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-                        if (AndroidViewModel.class.isAssignableFrom(modelClass)) {
-                            try {
-                                return modelClass.getConstructor(Application.class, getCurrentActivity().getClass())
-                                        .newInstance(getApplication(), getCurrentActivity());
-                            } catch (Exception e) {
-                                throw new RuntimeException("Cannot create an instance of " + modelClass, e);
-                            }
-                        }
-                        return super.create(modelClass);
-                    }
-                }).get(clazz);
+                return VMProviderUtils.createViewModel(getApplication(), getCurrentActivity(), clazz);
             } catch (Exception e) {
                 e.printStackTrace();
             }

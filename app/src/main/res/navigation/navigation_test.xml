@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/fragment_nav_main">
+
+    <fragment
+        android:id="@+id/fragment_nav_main"
+        android:name="com.renj.jetpack.navigation.NavMainFragment"
+        android:label="主Fragment"
+        tools:layout="@layout/navigation_main_fragment">
+
+        <action
+            android:id="@+id/action_first_fragment"
+            app:destination="@+id/fragment_nav_first"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_second_fragment"
+            app:destination="@+id/fragment_nav_second"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/fragment_nav_first"
+        android:name="com.renj.jetpack.navigation.NavFirstFragment"
+        android:label="第一个内容表示的 Fragment"
+        tools:layout="@layout/navigation_first_fragment">
+
+        <argument
+            android:name="content"
+            android:defaultValue="第一个内容表示的 Fragment"
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="bgColor"
+            android:defaultValue="#FFFFFF"
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="canJump"
+            android:defaultValue="true"
+            app:argType="boolean" />
+
+        <action
+            android:id="@+id/action_second_fragment2"
+            app:destination="@+id/fragment_nav_second"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_nav_second"
+        android:name="com.renj.jetpack.navigation.NavSecondFragment"
+        android:label="第二个内容表示的 Fragment"
+        tools:layout="@layout/navigation_second_fragment">
+
+        <argument
+            android:name="content"
+            android:defaultValue="第二个内容表示的 Fragment"
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="bgColor"
+            android:defaultValue="#FFFFFF"
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="canJump"
+            android:defaultValue="true"
+            app:argType="boolean" />
+
+        <action
+            android:id="@+id/action_first_fragment2"
+            app:destination="@+id/fragment_nav_first"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+</navigation>

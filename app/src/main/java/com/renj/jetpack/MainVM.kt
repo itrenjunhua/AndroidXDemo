@@ -1,10 +1,10 @@
 package com.renj.jetpack
 
 import android.app.Application
-import android.content.Intent
 import android.view.View
 import com.renj.jetpack.base.BaseViewModel
 import com.renj.jetpack.fvp.FVPActivity
+import com.renj.jetpack.navigation.NavigationActivity
 
 /**
  * ======================================================================
@@ -19,10 +19,14 @@ import com.renj.jetpack.fvp.FVPActivity
  *
  * ======================================================================
  */
-class MainViewModel(application: Application, activity: MainActivity) :
+class MainVM(application: Application, activity: MainActivity) :
     BaseViewModel(application, activity) {
 
     fun clickViewPager(view: View) {
-        activity?.startActivity(Intent(activity, FVPActivity::class.java))
+        FVPActivity.Commend.start(activity!!)
+    }
+
+    fun clickNavigation(view: View) {
+        NavigationActivity.Commend.start(activity!!)
     }
 }

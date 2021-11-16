@@ -3,9 +3,9 @@ package com.renj.jetpack
 import com.renj.jetpack.base.BaseActivity
 import com.renj.jetpack.databinding.ActivityMainBinding
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
+class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
 
-    override fun getCurrentActivity(): BaseActivity<ActivityMainBinding, MainViewModel> {
+    override fun getCurrentActivity(): BaseActivity<ActivityMainBinding, MainVM> {
         return this@MainActivity
     }
 
@@ -13,7 +13,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         return R.layout.activity_main
     }
 
-    override fun initData(viewDataBinding: ActivityMainBinding?, viewModel: MainViewModel?) {
-        viewDataBinding?.viewModel = viewModel
+    override fun initData(viewDataBinding: ActivityMainBinding?, mainVM: MainVM?) {
+        viewDataBinding?.viewModel = mainVM
     }
 }

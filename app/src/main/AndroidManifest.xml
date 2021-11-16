@@ -20,7 +20,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.renj.jetpack.fvp.FVPActivity" />
+        <activity
+            android:name=".fvp.FVPActivity"
+            android:label="Fragment、Fragment懒加载、ViewPager、ViewPager2的实现" />
+        <activity
+            android:name=".navigation.NavigationActivity"
+            android:label="Navigation 组件使用" />
     </application>
 
 </manifest>
