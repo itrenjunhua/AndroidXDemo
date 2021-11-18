@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="userBean"
+            type="com.renj.jetpack.paging.UserBean" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="6dp"
+        app:cardCornerRadius="6dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/iv_user_header"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:scaleType="centerCrop"
+                app:corners="@{4}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:url="@{userBean.userHeader}" />
+
+            <TextView
+                android:id="@+id/tv_name_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text='@{userBean.name + " | " + (userBean.sex == 1? "男" : "女") + " | " + userBean.age+"岁"}'
+                android:textColor="@color/text_main"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toRightOf="@+id/iv_user_header"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="张三 | 男 | 28岁" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text='@{userBean.address}'
+                android:textColor="@color/text_grey"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toRightOf="@+id/iv_user_header"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name_info"
+                tools:text="家庭住址" />
+
+            <TextView
+                android:id="@+id/tv_hobby"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text='@{"个人爱好："+userBean.hobby}'
+                android:textColor="@color/text_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_user_header"
+                tools:text="个人爱好" />
+
+            <TextView
+                android:id="@+id/tv_good_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text='@{"擅长："+userBean.goodAt}'
+                android:textColor="@color/text_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hobby"
+                tools:text="擅长" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

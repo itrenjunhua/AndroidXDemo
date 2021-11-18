@@ -5,6 +5,7 @@ import android.view.View
 import com.renj.jetpack.base.BaseViewModel
 import com.renj.jetpack.fvp.FVPActivity
 import com.renj.jetpack.navigation.NavigationActivity
+import com.renj.jetpack.paging.PagingListActivity
 
 /**
  * ======================================================================
@@ -28,5 +29,9 @@ class MainVM(application: Application, activity: MainActivity) :
 
     fun clickNavigation(view: View) {
         NavigationActivity.Commend.start(activity!!)
+    }
+
+    fun clickPaging(view: View) {
+        PagingListActivity.Commend.start(view.context)
     }
 }

@@ -26,6 +26,9 @@
         <activity
             android:name=".navigation.NavigationActivity"
             android:label="Navigation 组件使用" />
+        <activity
+            android:name=".paging.PagingListActivity"
+            android:label="Paging 框架使用" />
     </application>
 
 </manifest>

@@ -47,13 +47,22 @@
             app:layout_constraintTop_toBottomOf="@+id/title_view" />
 
         <Button
-            android:id="@+id/bt_nivagation"
+            android:id="@+id/bt_navigation"
             style="@style/style_main_bt"
             android:onClick="@{viewModel.clickNavigation}"
             android:text="Navigation"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_view_pager" />
+
+        <Button
+            android:id="@+id/bt_paging"
+            style="@style/style_main_bt"
+            android:onClick="@{viewModel.clickPaging}"
+            android:text="Paging 使用"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_navigation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
