@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="gridLayoutVm"
+            type="com.renj.jetpack.grid.GridLayoutVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.renj.jetpack.weight.TitleView
+            android:id="@+id/grid_title"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title_view_back_show="true"
+            app:title_view_title="GridLayout 使用" />
+
+        <androidx.gridlayout.widget.GridLayout
+            android:id="@+id/gly_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:columnCount="4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/grid_title"
+            app:orientation="horizontal"
+            app:rowCount="7">
+
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="#FFCCCC"
+                android:minHeight="80dp"
+                android:text="@{gridLayoutVm.resultContent}"
+                android:textSize="24sp"
+                app:layout_columnSpan="4"
+                app:layout_gravity="fill" />
+
+            <Button
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick="@{gridLayoutVm.clickBack}"
+                android:text="回退"
+                app:layout_columnSpan="2"
+                app:layout_gravity="fill" />
+
+            <Button
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick="@{gridLayoutVm.clickClear}"
+                android:text="清空"
+                app:layout_columnSpan="2"
+                app:layout_gravity="fill" />
+
+
+            <Button
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick='@{(view)->gridLayoutVm.clickButton(view,"1")}'
+                android:text="1"
+                app:layout_gravity="fill" />
+
+            <Button
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick='@{(view)->gridLayoutVm.clickButton(view,"2")}'
+                android:text="2"
+                app:layout_gravity="fill" />
+
+            <Button
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick='@{(view)->gridLayoutVm.clickButton(view,"3")}'
+                android:text="3"
+                app:layout_gravity="fill" />
+
+
+            <Button
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick='@{(view)->gridLayoutVm.clickButton(view,"4")}'
+                android:text="4"
+                app:layout_gravity="fill" />
+
+            <Button
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick='@{(view)->gridLayoutVm.clickButton(view,"5")}'
+                android:text="5"
+                app:layout_gravity="fill" />
+
+            <Button
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick='@{(view)->gridLayoutVm.clickButton(view,"6")}'
+                android:text="6"
+                app:layout_gravity="fill" />
+
+            <Button
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick='@{(view)->gridLayoutVm.clickButton(view,"7")}'
+                android:text="7"
+                app:layout_gravity="fill" />
+
+            <Button
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick='@{(view)->gridLayoutVm.clickButton(view,"8")}'
+                android:text="8"
+                app:layout_gravity="fill" />
+
+            <Button
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick='@{(view)->gridLayoutVm.clickButton(view,"9")}'
+                android:text="9"
+                app:layout_gravity="fill" />
+
+
+            <Button
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick='@{(view)->gridLayoutVm.clickButton(view,"0")}'
+                android:text="0"
+                app:layout_gravity="fill" />
+
+            <Button
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick='@{(view)->gridLayoutVm.clickButton(view,"a")}'
+                android:text="A"
+                app:layout_gravity="fill"
+                app:layout_columnSpan="2" />
+
+
+        </androidx.gridlayout.widget.GridLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

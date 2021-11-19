@@ -26,6 +26,7 @@ object ResUtils {
      * @param resId 图片ID
      * @return 转换结果
      */
+    @JvmStatic
     fun getResUri(resId: Int): String {
         val r: Resources = MyApplication.getApplication().resources
         val uri = Uri.parse(
@@ -40,6 +41,7 @@ object ResUtils {
     /**
      * 获取颜色值
      */
+    @JvmStatic
     fun getColor(colorId: Int): Int {
         val r: Resources = MyApplication.getApplication().resources
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -49,7 +51,8 @@ object ResUtils {
         }
     }
 
-    fun getString(stringId: Int): String? {
+    @JvmStatic
+    fun getString(stringId: Int): String {
         return MyApplication.getApplication().getString(stringId)
     }
 }

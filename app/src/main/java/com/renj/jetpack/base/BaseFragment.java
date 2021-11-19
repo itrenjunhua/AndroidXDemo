@@ -48,6 +48,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
+        viewDataBinding.setLifecycleOwner(this);
         viewModel = initViewModel();
         initData(viewDataBinding, viewModel);
         initListener(viewDataBinding, viewModel);

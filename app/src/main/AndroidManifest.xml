@@ -29,6 +29,9 @@
         <activity
             android:name=".paging.PagingListActivity"
             android:label="Paging 框架使用" />
+        <activity
+            android:name=".grid.GridLayoutActivity"
+            android:label="GridLayout 使用" />
     </application>
 
 </manifest>

@@ -64,6 +64,15 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_navigation" />
 
+        <Button
+            android:id="@+id/bt_grid_layout"
+            style="@style/style_main_bt"
+            android:onClick="@{viewModel.clickGridLayout}"
+            android:text="GridLayout 使用"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_paging" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

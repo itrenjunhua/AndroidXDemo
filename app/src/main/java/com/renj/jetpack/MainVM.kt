@@ -4,6 +4,7 @@ import android.app.Application
 import android.view.View
 import com.renj.jetpack.base.BaseViewModel
 import com.renj.jetpack.fvp.FVPActivity
+import com.renj.jetpack.grid.GridLayoutActivity
 import com.renj.jetpack.navigation.NavigationActivity
 import com.renj.jetpack.paging.PagingListActivity
 
@@ -24,14 +25,18 @@ class MainVM(application: Application, activity: MainActivity) :
     BaseViewModel(application, activity) {
 
     fun clickViewPager(view: View) {
-        FVPActivity.Commend.start(activity!!)
+        FVPActivity.Commend.start(view.context)
     }
 
     fun clickNavigation(view: View) {
-        NavigationActivity.Commend.start(activity!!)
+        NavigationActivity.Commend.start(view.context)
     }
 
     fun clickPaging(view: View) {
         PagingListActivity.Commend.start(view.context)
+    }
+
+    fun clickGridLayout(view: View) {
+        GridLayoutActivity.Commend.start(view.context)
     }
 }

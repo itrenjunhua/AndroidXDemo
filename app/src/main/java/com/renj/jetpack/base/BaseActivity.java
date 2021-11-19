@@ -48,6 +48,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding, VM extends BaseVi
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         viewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
+        viewDataBinding.setLifecycleOwner(this);
         viewModel = initViewModel();
         SystemBarUtils.setStatusWhiteAndDark(this);
         initData(viewDataBinding, viewModel);
