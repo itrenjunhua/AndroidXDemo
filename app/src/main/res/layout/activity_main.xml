@@ -40,7 +40,7 @@
         <Button
             android:id="@+id/bt_view_pager"
             style="@style/style_main_bt"
-            android:onClick="@{viewModel.clickViewPager}"
+            android:onClick="@{viewModel::clickViewPager}"
             android:text="Fragment/ViewPager/Viewpager2"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -49,7 +49,7 @@
         <Button
             android:id="@+id/bt_navigation"
             style="@style/style_main_bt"
-            android:onClick="@{viewModel.clickNavigation}"
+            android:onClick="@{viewModel::clickNavigation}"
             android:text="Navigation"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -58,7 +58,7 @@
         <Button
             android:id="@+id/bt_paging"
             style="@style/style_main_bt"
-            android:onClick="@{viewModel.clickPaging}"
+            android:onClick="@{viewModel::clickPaging}"
             android:text="Paging 使用"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -67,8 +67,17 @@
         <Button
             android:id="@+id/bt_grid_layout"
             style="@style/style_main_bt"
-            android:onClick="@{viewModel.clickGridLayout}"
+            android:onClick="@{viewModel::clickGridLayout}"
             android:text="GridLayout 使用"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_paging" />
+
+        <Button
+            android:id="@+id/bt_compose"
+            style="@style/style_main_bt"
+            android:onClick="@{viewModel::clickCompose}"
+            android:text="Compose 使用"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_paging" />

@@ -3,7 +3,7 @@
     package="com.renj.jetpack">
 
     <application
-        android:name="com.renj.jetpack.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JetpackDemo">
         <activity
-            android:name="com.renj.jetpack.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".fvp.FVPActivity"
             android:label="Fragment、Fragment懒加载、ViewPager、ViewPager2的实现" />
@@ -32,6 +31,12 @@
         <activity
             android:name=".grid.GridLayoutActivity"
             android:label="GridLayout 使用" />
+        <activity
+            android:name=".compose.activity.ComposeMainActivity"
+            android:label="compose 使用" />
+        <activity
+            android:name=".compose.activity.ComposeListActivity"
+            android:label="compose 列表" />
     </application>
 
 </manifest>

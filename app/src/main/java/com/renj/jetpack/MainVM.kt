@@ -3,6 +3,7 @@ package com.renj.jetpack
 import android.app.Application
 import android.view.View
 import com.renj.jetpack.base.BaseViewModel
+import com.renj.jetpack.compose.activity.ComposeMainActivity
 import com.renj.jetpack.fvp.FVPActivity
 import com.renj.jetpack.grid.GridLayoutActivity
 import com.renj.jetpack.navigation.NavigationActivity
@@ -38,5 +39,9 @@ class MainVM(application: Application, activity: MainActivity) :
 
     fun clickGridLayout(view: View) {
         GridLayoutActivity.Commend.start(view.context)
+    }
+
+    fun clickCompose(view: View) {
+        ComposeMainActivity.Commend.start(view.context)
     }
 }
