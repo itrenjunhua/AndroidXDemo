@@ -19,18 +19,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".fvp.FVPActivity"
             android:label="Fragment、Fragment懒加载、ViewPager、ViewPager2的实现" />
+
         <activity
             android:name=".navigation.NavigationActivity"
             android:label="Navigation 组件使用" />
+
         <activity
             android:name=".paging.PagingListActivity"
             android:label="Paging 框架使用" />
+
+        <activity
+            android:name=".room.RoomOperatorActivity"
+            android:label="Room 使用" />
+
         <activity
             android:name=".grid.GridLayoutActivity"
             android:label="GridLayout 使用" />
+
         <activity
             android:name=".compose.activity.ComposeMainActivity"
             android:label="compose 使用" />

@@ -34,10 +34,6 @@ class PagingListActivity : BaseActivity<PagingListActivityBinding, PagingListVM>
         }
     }
 
-    override fun getCurrentActivity(): BaseActivity<PagingListActivityBinding, PagingListVM> {
-        return this
-    }
-
     override fun getLayoutId(): Int {
         return R.layout.paging_list_activity
     }

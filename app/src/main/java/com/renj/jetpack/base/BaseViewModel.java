@@ -1,12 +1,8 @@
 package com.renj.jetpack.base;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.AndroidViewModel;
 
 /**
@@ -23,27 +19,7 @@ import androidx.lifecycle.AndroidViewModel;
  * ======================================================================
  */
 public class BaseViewModel extends AndroidViewModel {
-    /**
-     * 当在Fragment中使用 BaseViewModel 时，可能为 null
-     */
-    @SuppressLint("StaticFieldLeak")
-    protected @Nullable
-    Activity activity;
-    /**
-     * 当在Activity中使用 BaseViewModel 时，一定为 null
-     */
-    protected @Nullable
-    Fragment fragment;
-
-    public BaseViewModel(@NonNull Application application, @NonNull Activity activity) {
+    public BaseViewModel(@NonNull Application application) {
         super(application);
-        this.activity = activity;
-        this.fragment = null;
-    }
-
-    public BaseViewModel(@NonNull Application application, @NonNull Fragment fragment) {
-        super(application);
-        this.fragment = fragment;
-        this.activity = fragment.getActivity();
     }
 }

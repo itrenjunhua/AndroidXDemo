@@ -5,10 +5,6 @@ import com.renj.jetpack.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
 
-    override fun getCurrentActivity(): BaseActivity<ActivityMainBinding, MainVM> {
-        return this@MainActivity
-    }
-
     override fun getLayoutId(): Int {
         return R.layout.activity_main
     }

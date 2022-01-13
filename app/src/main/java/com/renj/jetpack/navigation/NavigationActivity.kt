@@ -28,10 +28,6 @@ class NavigationActivity : BaseActivity<NavigationActivityBinding, Nothing>() {
         }
     }
 
-    override fun getCurrentActivity(): BaseActivity<NavigationActivityBinding, Nothing> {
-        return this
-    }
-
     override fun getLayoutId(): Int {
         return R.layout.navigation_activity
     }

@@ -26,10 +26,6 @@ class GridLayoutActivity : BaseActivity<GridLayoutActivityBinding, GridLayoutVM>
         }
     }
 
-    override fun getCurrentActivity(): BaseActivity<GridLayoutActivityBinding, GridLayoutVM> {
-        return this
-    }
-
     override fun getLayoutId(): Int {
         return R.layout.grid_layout_activity
     }

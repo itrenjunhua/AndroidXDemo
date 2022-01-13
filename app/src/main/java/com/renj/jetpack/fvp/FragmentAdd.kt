@@ -3,7 +3,6 @@ package com.renj.jetpack.fvp
 import android.graphics.Color
 import android.os.Bundle
 import com.renj.jetpack.R
-import com.renj.jetpack.base.BaseFragment
 import com.renj.jetpack.base.LazyFragment
 import com.renj.jetpack.databinding.FragmentActivityAddBinding
 
@@ -31,10 +30,6 @@ class FragmentAdd : LazyFragment<FragmentActivityAddBinding, Nothing>() {
             fragment.arguments = args
             return fragment
         }
-    }
-
-    override fun getCurrentFragment(): BaseFragment<FragmentActivityAddBinding, Nothing> {
-        return this
     }
 
     override fun getLayoutId(): Int {

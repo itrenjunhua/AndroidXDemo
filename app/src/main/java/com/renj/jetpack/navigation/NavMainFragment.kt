@@ -19,9 +19,6 @@ import com.renj.jetpack.databinding.NavigationMainFragmentBinding
  * ======================================================================
  */
 class NavMainFragment : BaseFragment<NavigationMainFragmentBinding, Nothing>() {
-    override fun getCurrentFragment(): BaseFragment<NavigationMainFragmentBinding, Nothing> {
-        return this
-    }
 
     override fun getLayoutId(): Int {
         return R.layout.navigation_main_fragment

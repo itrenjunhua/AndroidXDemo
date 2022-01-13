@@ -42,11 +42,13 @@ class PagingListAdapter : PagingDataAdapter<UserBean, ViewHolder>(DataDiff) {
         }
 
         /**
-         * 这个方法对应 RcyclerView的 adapter的 第三个参数；用于条目内部的局部刷新；可选
+         * 这个方法对应 RecyclerView的 adapter的 第三个参数；用于条目内部的局部刷新；可选
          */
+        /*
         override fun getChangePayload(oldItem: UserBean, newItem: UserBean): Any? {
             return super.getChangePayload(oldItem, newItem)
         }
+        */
     }
 
 

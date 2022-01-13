@@ -40,10 +40,9 @@ object VMProviderUtils {
                 return if (AndroidViewModel::class.java.isAssignableFrom(modelClass)) {
                     try {
                         modelClass.getConstructor(
-                            Application::class.java,
-                            fragment.javaClass
+                            Application::class.java
                         )
-                            .newInstance(application, fragment)
+                            .newInstance(application)
                     } catch (e: Exception) {
                         throw RuntimeException("Cannot create an instance of $modelClass", e)
                     }
@@ -63,10 +62,9 @@ object VMProviderUtils {
                 return if (AndroidViewModel::class.java.isAssignableFrom(modelClass)) {
                     try {
                         modelClass.getConstructor(
-                            Application::class.java,
-                            activity.javaClass
+                            Application::class.java
                         )
-                            .newInstance(application, activity)
+                            .newInstance(application)
                     } catch (e: Exception) {
                         throw RuntimeException("Cannot create an instance of $modelClass", e)
                     }

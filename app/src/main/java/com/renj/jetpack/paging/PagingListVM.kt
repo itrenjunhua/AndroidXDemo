@@ -20,8 +20,8 @@ import com.renj.jetpack.base.BaseViewModel
  *
  * ======================================================================
  */
-class PagingListVM(application: Application, activity: PagingListActivity) :
-    BaseViewModel(application, activity) {
+class PagingListVM(application: Application) :
+    BaseViewModel(application) {
     val listData = Pager(PagingConfig(pageSize = 20)) {
         PageDataSource()
     }.flow.cachedIn(viewModelScope)

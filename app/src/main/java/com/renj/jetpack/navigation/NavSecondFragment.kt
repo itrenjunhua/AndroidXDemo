@@ -20,9 +20,6 @@ import com.renj.jetpack.databinding.NavigationSecondFragmentBinding
  * ======================================================================
  */
 class NavSecondFragment : BaseFragment<NavigationSecondFragmentBinding, Nothing>() {
-    override fun getCurrentFragment(): BaseFragment<NavigationSecondFragmentBinding, Nothing> {
-        return this
-    }
 
     override fun getLayoutId(): Int {
         return R.layout.navigation_second_fragment

@@ -35,7 +35,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding, VM extends BaseVi
     protected DB viewDataBinding;
     protected VM viewModel;
 
-    private Map<Class<? extends BaseLifecycleListener>, BaseLifecycleListener> lifecycleListeners;
+    private final Map<Class<? extends BaseLifecycleListener>, BaseLifecycleListener> lifecycleListeners;
 
     public BaseActivity() {
         super();
@@ -46,11 +46,15 @@ public abstract class BaseActivity<DB extends ViewDataBinding, VM extends BaseVi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        beforeInitViewData();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+
         viewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
         viewDataBinding.setLifecycleOwner(this);
         viewModel = initViewModel();
+
         SystemBarUtils.setStatusWhiteAndDark(this);
+
         initData(viewDataBinding, viewModel);
         initListener(viewDataBinding, viewModel);
 
@@ -62,6 +66,9 @@ public abstract class BaseActivity<DB extends ViewDataBinding, VM extends BaseVi
         });
     }
 
+    protected void beforeInitViewData() {
+    }
+
     @SuppressWarnings("all")
     protected VM initViewModel() {
         // 通过反射获取泛型的Class
@@ -70,7 +77,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding, VM extends BaseVi
             try {
                 Class<VM> clazz = (Class<VM>) ((ParameterizedType) genericSuperclass).getActualTypeArguments()[1];
                 if (clazz == null) return null;
-                return VMProviderUtils.createViewModel(getApplication(), getCurrentActivity(), clazz);
+                return VMProviderUtils.createViewModel(getApplication(), this, clazz);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -84,8 +91,6 @@ public abstract class BaseActivity<DB extends ViewDataBinding, VM extends BaseVi
     protected void structureMethod() {
 
     }
-
-    protected abstract BaseActivity<DB, VM> getCurrentActivity();
 
     @LayoutRes
     protected abstract int getLayoutId();

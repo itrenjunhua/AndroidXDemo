@@ -20,9 +20,6 @@ import com.renj.jetpack.databinding.NavigationFirstFragmentBinding
  * ======================================================================
  */
 class NavFirstFragment : BaseFragment<NavigationFirstFragmentBinding, Nothing>() {
-    override fun getCurrentFragment(): BaseFragment<NavigationFirstFragmentBinding, Nothing> {
-        return this
-    }
 
     override fun getLayoutId(): Int {
         return R.layout.navigation_first_fragment

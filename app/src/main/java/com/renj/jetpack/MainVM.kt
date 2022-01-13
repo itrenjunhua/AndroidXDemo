@@ -8,6 +8,7 @@ import com.renj.jetpack.fvp.FVPActivity
 import com.renj.jetpack.grid.GridLayoutActivity
 import com.renj.jetpack.navigation.NavigationActivity
 import com.renj.jetpack.paging.PagingListActivity
+import com.renj.jetpack.room.RoomOperatorActivity
 
 /**
  * ======================================================================
@@ -22,8 +23,7 @@ import com.renj.jetpack.paging.PagingListActivity
  *
  * ======================================================================
  */
-class MainVM(application: Application, activity: MainActivity) :
-    BaseViewModel(application, activity) {
+class MainVM(application: Application) : BaseViewModel(application) {
 
     fun clickViewPager(view: View) {
         FVPActivity.Commend.start(view.context)
@@ -35,6 +35,10 @@ class MainVM(application: Application, activity: MainActivity) :
 
     fun clickPaging(view: View) {
         PagingListActivity.Commend.start(view.context)
+    }
+
+    fun clickRoom(view: View) {
+        RoomOperatorActivity.start(view.context)
     }
 
     fun clickGridLayout(view: View) {

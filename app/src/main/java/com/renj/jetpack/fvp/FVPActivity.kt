@@ -29,10 +29,6 @@ class FVPActivity : BaseActivity<FragmentActivityBinding, Nothing>() {
         }
     }
 
-    override fun getCurrentActivity(): BaseActivity<FragmentActivityBinding, Nothing> {
-        return this
-    }
-
     override fun getLayoutId(): Int {
         return R.layout.fragment_activity
     }

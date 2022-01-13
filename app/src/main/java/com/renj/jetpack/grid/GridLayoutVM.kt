@@ -19,8 +19,8 @@ import com.renj.jetpack.expand.ktx.handlerString
  *
  * ======================================================================
  */
-class GridLayoutVM(application: Application, activity: GridLayoutActivity) :
-    BaseViewModel(application, activity) {
+class GridLayoutVM(application: Application) :
+    BaseViewModel(application) {
 
     var resultContent = MutableLiveData<String>()
 

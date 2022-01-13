@@ -31,10 +31,6 @@ class FragmentReplace : LazyFragment<FragmentActivityFragmentBinding, Nothing>()
         }
     }
 
-    override fun getCurrentFragment(): BaseFragment<FragmentActivityFragmentBinding, Nothing> {
-        return this
-    }
-
     override fun getLayoutId(): Int {
         return R.layout.fragment_activity_fragment
     }

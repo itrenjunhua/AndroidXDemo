@@ -11,7 +11,6 @@ import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleRegistry;
 
 import com.renj.jetpack.utils.Logger;
 
@@ -44,7 +43,6 @@ public abstract class LazyFragment<DB extends ViewDataBinding, VM extends BaseVi
     // onHiddenChanged() 或者 setUserVisibleHint() 方法当前状态是否为对用户可见状态
     private boolean hiddenAndVisibleStatusVisible = true;
 
-    private LifecycleRegistry mLifecycleRegistry;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -302,13 +300,5 @@ public abstract class LazyFragment<DB extends ViewDataBinding, VM extends BaseVi
                 }
             }
         }
-    }
-
-    @NonNull
-    @Override
-    public Lifecycle getLifecycle() {
-        if (mLifecycleRegistry == null)
-            mLifecycleRegistry = new LifecycleRegistry(this);
-        return mLifecycleRegistry;
     }
 }

@@ -36,10 +36,6 @@ class VP2Fragment : LazyFragment<FragmentViewPager2Binding, Nothing>() {
         }
     }
 
-    override fun getCurrentFragment(): BaseFragment<FragmentViewPager2Binding, Nothing> {
-        return this
-    }
-
     override fun getLayoutId(): Int {
         return R.layout.fragment_view_pager2
     }

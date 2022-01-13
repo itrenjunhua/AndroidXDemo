@@ -36,7 +36,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
     protected DB viewDataBinding;
     protected VM viewModel;
 
-    private Map<Class<? extends BaseLifecycleListener>, BaseLifecycleListener> lifecycleListeners;
+    private final Map<Class<? extends BaseLifecycleListener>, BaseLifecycleListener> lifecycleListeners;
 
     public BaseFragment() {
         super();
@@ -47,12 +47,18 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        beforeInitViewData();
+
         viewDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
         viewDataBinding.setLifecycleOwner(this);
         viewModel = initViewModel();
+
         initData(viewDataBinding, viewModel);
         initListener(viewDataBinding, viewModel);
         return viewDataBinding.getRoot();
+    }
+
+    protected void beforeInitViewData() {
     }
 
     @SuppressWarnings("all")
@@ -63,7 +69,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
             try {
                 Class<VM> clazz = (Class<VM>) ((ParameterizedType) genericSuperclass).getActualTypeArguments()[1];
                 if (clazz == null) return null;
-                return VMProviderUtils.createViewModel(getActivity().getApplication(), getCurrentFragment(), clazz);
+                return VMProviderUtils.createViewModel(getActivity().getApplication(), this, clazz);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -77,8 +83,6 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
     protected void structureMethod() {
 
     }
-
-    protected abstract BaseFragment<DB, VM> getCurrentFragment();
 
     @LayoutRes
     protected abstract int getLayoutId();
